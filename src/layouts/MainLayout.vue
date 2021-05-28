@@ -21,6 +21,16 @@
               </q-item-section>
             </q-item>
 
+             <q-item clickable v-ripple to="/form" active-class="my-menu-link">
+              <q-item-section avatar>
+                <q-icon name="note" />
+              </q-item-section>
+
+              <q-item-section>
+                Form
+              </q-item-section>
+            </q-item>
+
             <q-item clickable v-ripple to="/about" active-class="my-menu-link">
               <q-item-section avatar>
                 <q-icon name="star" />
