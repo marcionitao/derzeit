@@ -32,14 +32,20 @@
     </div>
   </q-form>
 
+  <!--Son Component(ShowDatas)-->
+  <show-datas :products='products' />
 </q-page>
 </template>
 
 <script>
 import { ref } from 'vue'
 import { useQuasar } from 'quasar'
+import ShowDatas from '../components/ShowDatas'
 
 export default {
+  
+  components: { ShowDatas },
+
   setup() {
     // used quasar pluggin
     const $q = useQuasar();
@@ -49,6 +55,9 @@ export default {
     const selected = ref(null);
     const conditions = ref(false);
     const myoptions = ['maxima', 'moderada', 'minima'];
+
+    // use for show ours data table as 'Props'
+    const products = ref([]);
 
     const addForm = () => {
       if (conditions.value === false) {
@@ -67,9 +76,19 @@ export default {
           icon: 'cloud-done',
           message:'Submited!'}
         )
-        // clear Form
+        // reset Form
         myForm.value.resetValidation();
+
+        // processing Form
+        products.value = [...products.value, {
+          product: product.value,
+          prioridad: selected.value
+        }]
+        console.log([...products.value])
+
+        // clear Form
         addClear();
+
       }
 
     }
@@ -81,7 +100,7 @@ export default {
     }
 
     return {
-      myForm, product, selected, myoptions, addForm, conditions, addClear
+      myForm, product, selected, myoptions, addForm, conditions, addClear, products
     }
   }
 }
